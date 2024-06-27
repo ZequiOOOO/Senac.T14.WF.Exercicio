@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace WinFormsApp1
 {
-    internal class Class1
+    internal class User
+
     {
 
         [Key]
