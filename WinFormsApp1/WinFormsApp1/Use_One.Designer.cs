@@ -28,18 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            airButton1 = new ReaLTaiizor.Controls.AirButton();
             SuspendLayout();
+            // 
+            // airButton1
+            // 
+            airButton1.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton1.Font = new Font("Segoe UI", 9F);
+            airButton1.Image = null;
+            airButton1.Location = new Point(494, 85);
+            airButton1.Name = "airButton1";
+            airButton1.NoRounding = false;
+            airButton1.Size = new Size(150, 68);
+            airButton1.TabIndex = 0;
+            airButton1.Text = "airButton1";
+            airButton1.Transparent = false;
+            airButton1.Click += airButton1_Click;
             // 
             // FrmUserOne
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
+            Controls.Add(airButton1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FrmUserOne";
             Text = "User One";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private ReaLTaiizor.Controls.AirButton airButton1;
     }
 }
