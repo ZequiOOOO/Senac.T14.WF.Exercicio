@@ -54,6 +54,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "FrmUserOne";
             Text = "User One";
+            Load += FrmUserOne_Load;
             ResumeLayout(false);
         }
 

@@ -26,5 +26,10 @@ namespace WinFormsApp1
                 contexto.SaveChanges(); // executa o script de insert no banco de dados
             }
         }
+
+        private void FrmUserOne_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
