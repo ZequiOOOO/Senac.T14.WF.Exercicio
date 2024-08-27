@@ -1,0 +1,42 @@
+﻿namespace Projeto.Carros.Views.Home
+{
+    public class Carro
+    {
+    }
+}
+
+@model UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Usuario";
+}
+
+<h1>Usuarios</h1>
+
+<a class="btn btn-primary" asp-controller="home" asp-action="NovoUsuario">Novo Usuario</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Fabricante</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var carros in this.Model.ListCarros)
+            {
+                <tr>
+                    <td>@Carros.Nome</td>
+                    <td>@Carros.Fabricante</td>
+                    <td>@Carros.Marca</td>
+                    <td>@Carros.modelo</td>
+                    <td>@Carros.Ano</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
