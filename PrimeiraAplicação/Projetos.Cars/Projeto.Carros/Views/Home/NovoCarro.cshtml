@@ -1,0 +1,41 @@
+﻿@model Projeto.Carros.Models.Carros?
+
+@{
+    ViewData["Title"] = "Novo Carro";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+@using (Html.BeginForm("PersistirCarro", "Home", FormMethod.Post))
+{
+    <div>
+        <input type="hidden" name="id" value="@Model?.Id" />
+    </div>
+    <div>
+        Nome<input type="text" name="nome" value="@Model?.Nome" />
+    </div>
+    <div>
+        Modelo<input type="text" name="modelo" value="@Model?.Modelo" />
+    </div>
+    <div>
+        Marca<input type="text" name="marca" value="@Model?.Marca" />
+    </div>
+    <div>
+        Fabricante<input type="text" name="fabricante" value="@Model?.Fabricante" />
+    </div>
+    <div>
+        Ano<input type="text" name="ano" value="@Model?.Ano" />
+    </div>
+    <div>
+        <button class="btn btn-success">
+            @{
+                var nomeBotao = "Adicionar";
+                if (Model != null)
+                {
+                    nomeBotao = "Editar";
+                }
+            }
+            @nomeBotao
+        </button>
+    </div>
+}

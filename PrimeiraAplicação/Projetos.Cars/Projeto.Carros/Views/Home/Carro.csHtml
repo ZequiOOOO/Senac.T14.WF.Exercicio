@@ -1,19 +1,12 @@
-﻿namespace Projeto.Carros.Views.Home
-{
-    public class Carro
-    {
-    }
-}
-
-@model UsuarioViewModel
+﻿@model CarrosViewsModel
 
 @{
-    ViewData["Title"] = "Usuario";
+    ViewData["Title"] = "Lista de Carros";
 }
 
-<h1>Usuarios</h1>
+<h1>Lista de Carros</h1>
 
-<a class="btn btn-primary" asp-controller="home" asp-action="NovoUsuario">Novo Usuario</a>
+<a class="btn btn-primary" asp-controller="Home" asp-action="NovoCarro">Novo Carro</a>
 
 <table class="table table-striped">
     <thead>
@@ -22,7 +15,7 @@
             <th>Fabricante</th>
             <th>Marca</th>
             <th>Modelo</th>
-            <th>Ano</th
+            <th>Ano</th>
         </tr>
     </thead>
     <tbody>
@@ -30,11 +23,17 @@
             foreach (var carros in this.Model.ListCarros)
             {
                 <tr>
-                    <td>@Carros.Nome</td>
-                    <td>@Carros.Fabricante</td>
-                    <td>@Carros.Marca</td>
-                    <td>@Carros.modelo</td>
-                    <td>@Carros.Ano</td>
+                    <td>@carros.Nome</td>
+                    <td>@carros.Fabricante</td>
+                    <td>@carros.Marca</td>
+                    <td>@carros.Modelo</td>
+                    <td>@carros.Ano</td>
+                    <td>
+                      <a class="btn btn-primary" asp-action="NovoCarro" asp-controller="Home" asp-route-id="@carros.Id">Editar</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-action="Deletar" asp-controller="Home" asp-route-id="@carros.Id">Excluir</a>
+                   </td>
                 </tr>
             }
         }
