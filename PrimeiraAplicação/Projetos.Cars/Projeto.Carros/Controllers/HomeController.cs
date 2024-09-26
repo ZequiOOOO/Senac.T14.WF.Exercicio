@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Projeto.Carros.Models;
 using System.Diagnostics;
+using Servico;
+using Servico.Model;
 
 namespace Projeto.Carros.Controllers
 {
@@ -33,16 +35,46 @@ namespace Projeto.Carros.Controllers
         }
 
         public IActionResult Carro()
-        {  var ViewModel = new CarrosViewsModel () { ListCarros = _list };
-            return View(ViewModel);
-        }
-       
-        public IActionResult NovoCarro(int? id)
-        {
-            var carro = _list.Where(carro => carro.Id == id).FirstOrDefault();
+          {
 
-            return View(carro);
+        var DB = new DB();
+
+        var listaTO = DB.GetCarros();
+
+        var listaCarros = new List<Carros>();
+
+          foreach (var carrosTO in listaTO) {
+              listaCarros.Add(
+               new Carro() { Id = carrosTO.Id, nome = carrosTO.Nome }
+                );
+            };
+
+    var ViewModel = new carrosViewModel() { ListCarro = listaCarros };
+   
+            return View(ViewModel);
+
+}
+
+public IActionResult NovoCarro(int? id)
+        {
+
+            Carro? Carro = null;
+
+            if (id != null)
+            {
+                var db = new DB();
+
+                var carrosTO = db.GetCarrosById(id.GetValueOrDefault());
+
+                Carro= new Carro()
+                {
+                    Id = CarrosTO.Id,
+                    nome = CarrosTO.Nome,
+                };
+            }
+            return View(Carro);
         }
+
 
         public IActionResult PersistirCarro(int? id, string nome, string modelo, string fabricante, string marca, int ano)
         {

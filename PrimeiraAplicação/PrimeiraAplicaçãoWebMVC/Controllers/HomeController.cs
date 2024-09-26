@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PrimeiraAplicaçãoWebMVC.Models;
 using System.Diagnostics;
+using Servico;
+using Servico.model;
 
 namespace PrimeiraAplicaçãoWebMVC.Controllers
 {
@@ -41,47 +43,77 @@ namespace PrimeiraAplicaçãoWebMVC.Controllers
 
             if (id != null)
             {
-                usuario = _list.Where(w => w.Id == id).FirstOrDefault();
+                var db = new Db();
+
+                var usuarioTO = db.GetUsuarioById(id.GetValueOrDefault());
+
+                usuario = new Usuario()
+                {
+                    Id = usuarioTO.Id,
+                    nome = usuarioTO.Nome,
+                };
             }
             return View(usuario);
         }
 
+
+
         public IActionResult PersistirUsuario(int? id, string nome, string email)
         {
+            var db = new Db();
+
             if (id == null)
             {
-                var novoUsuario = new Usuario()
+                var novoUsuario = new UsuarioTO()
                 {
-                    Id = _list.Count + _list.Last().Id,
-                    nome = nome,
-                    email = email
+                    Nome = nome,
                 };
-                _list.Add(novoUsuario);
+
+                db.AddUsuario(novoUsuario);
+
             }
             else
             {
-                var usuario = _list.Where(w => w.Id == id).FirstOrDefault();
-                usuario.nome = nome;
-                usuario.email = email;
+                var alterarUsuario = new UsuarioTO()
+                {
+                    Id = id.GetValueOrDefault(),
+                    Nome = nome,
+                };
+
+                db.UpdateAlterarUsuario(alterarUsuario);
             }
 
             return RedirectToAction("Usuario");
         }
 
-   
+
         public IActionResult Usuario()
         {
-            var ViewModel = new UsuarioViewModel() { ListUsuario = _list };
 
+            var Db = new Db();
+
+            var listaTO = Db.GetUsuarios();
+
+            var listaUsuario = new List<Usuario>();
+
+            foreach (var usuarioTO in listaTO) {
+                listaUsuario.Add(
+                    new Usuario() { Id = usuarioTO.Id, nome = usuarioTO.Nome }
+                );
+            };
+       
+            var ViewModel = new UsuarioViewModel() { ListUsuario = listaUsuario };
+   
             return View(ViewModel);
 
         }
 
         public IActionResult Deletar(int Id)
         {
-            var usuario = _list.Where(w => w.Id == Id).FirstOrDefault();
+            var db = new Db();
 
-            _list.Remove(usuario);
+            db.DeletarUsuario(Id);
+
 
             return RedirectToAction("Usuario"); 
         }
