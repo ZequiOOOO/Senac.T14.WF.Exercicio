@@ -66,7 +66,7 @@ public IActionResult NovoCarro(int? id)
 
                 var carrosTO = db.GetCarrosById(id.GetValueOrDefault());
 
-                Carro= new Carro()
+                Carro = new Carro()
                 {
                     Id = CarrosTO.Id,
                     nome = CarrosTO.Nome,
@@ -77,10 +77,12 @@ public IActionResult NovoCarro(int? id)
 
 
         public IActionResult PersistirCarro(int? id, string nome, string modelo, string fabricante, string marca, int ano)
-        {
+        { 
+            var DB new DB(); 
+
             if (id == null)
             {
-                var novoCarro = new Models.Carros()
+                var novoCarro = new CarrosTO()
                 {
                     Nome = nome,
                     Ano = ano,
@@ -89,8 +91,7 @@ public IActionResult NovoCarro(int? id)
                     Modelo = modelo,
                     Id = _lastId,
                 };
-                _lastId++;
-                _list.Add(novoCarro);
+               DB.AddCarro(novoCarro);
             }
             else
             {
@@ -107,9 +108,9 @@ public IActionResult NovoCarro(int? id)
 
         public IActionResult Deletar(int? id)
         {
-            var carro = _list.Where(carro => carro.Id == id).FirstOrDefault();
+            var DB = new DB();
 
-            _list.Remove(carro);
+            DB.DeletarCarros(id);
 
             return RedirectToAction("Carro");
         }
