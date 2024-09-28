@@ -41,15 +41,15 @@ namespace Projeto.Carros.Controllers
 
         var listaTO = DB.GetCarros();
 
-        var listaCarros = new List<Carros>();
+        var listaCarros = new List<Models.Carros>();
 
           foreach (var carrosTO in listaTO) {
               listaCarros.Add(
-               new Carro() { Id = carrosTO.Id, nome = carrosTO.Nome }
+               new Models.Carros() { Id = carrosTO.Id, Nome = carrosTO.Nome,  Fabricante =carrosTO.Fabricante, Marca =carrosTO.Marca, Ano = carrosTO.Ano, Modelo= carrosTO.Modelo  }
                 );
             };
 
-    var ViewModel = new carrosViewModel() { ListCarro = listaCarros };
+    var ViewModel = new CarrosViewsModel() { ListCarros = listaCarros };
    
             return View(ViewModel);
 
@@ -58,7 +58,7 @@ namespace Projeto.Carros.Controllers
 public IActionResult NovoCarro(int? id)
         {
 
-            Carro? Carro = null;
+            Models.Carros? Carro = null;
 
             if (id != null)
             {
@@ -66,10 +66,13 @@ public IActionResult NovoCarro(int? id)
 
                 var carrosTO = db.GetCarrosById(id.GetValueOrDefault());
 
-                Carro = new Carro()
+                Carro= new Models.Carros()
                 {
-                    Id = CarrosTO.Id,
-                    nome = CarrosTO.Nome,
+                    Id = carrosTO.Id,
+                    Nome = carrosTO.Nome,
+                    Marca = carrosTO.Marca,
+                    Fabricante = carrosTO.Fabricante,
+                    Modelo = carrosTO.Modelo,
                 };
             }
             return View(Carro);
@@ -77,8 +80,8 @@ public IActionResult NovoCarro(int? id)
 
 
         public IActionResult PersistirCarro(int? id, string nome, string modelo, string fabricante, string marca, int ano)
-        { 
-            var DB new DB(); 
+        {
+             var DB = new DB();
 
             if (id == null)
             {
@@ -91,18 +94,21 @@ public IActionResult NovoCarro(int? id)
                     Modelo = modelo,
                     Id = _lastId,
                 };
-               DB.AddCarro(novoCarro);
+                DB.AddCarros(novoCarro);
             }
             else
             {
-               var carroEditar = _list.Where(carro => carro.Id == id).FirstOrDefault();
-                carroEditar.Nome = nome;
-                carroEditar.Modelo = modelo;
-                carroEditar.Fabricante = fabricante;
-                carroEditar.Ano = ano;  
-                carroEditar.Marca = marca;
-            }
+                var  alterarCarro  = DB.GetCarrosById(id.GetValueOrDefault());
 
+                alterarCarro.Nome = nome;
+                alterarCarro.Modelo= modelo;
+                alterarCarro.Fabricante = fabricante;
+                alterarCarro.Ano = ano;
+                alterarCarro.Marca = marca;
+
+                DB.UpdateAlterarCarros(alterarCarro);
+            }
+         
             return RedirectToAction("Carro");
         }
 
@@ -110,7 +116,7 @@ public IActionResult NovoCarro(int? id)
         {
             var DB = new DB();
 
-            DB.DeletarCarros(id);
+            DB.DeletarCarros(id.GetValueOrDefault());
 
             return RedirectToAction("Carro");
         }
