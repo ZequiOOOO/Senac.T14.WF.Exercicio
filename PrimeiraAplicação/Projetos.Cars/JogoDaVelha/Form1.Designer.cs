@@ -101,18 +101,20 @@
             // lblJogadorO
             // 
             lblJogadorO.AutoSize = true;
+            lblJogadorO.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblJogadorO.Location = new Point(201, 167);
             lblJogadorO.Name = "lblJogadorO";
-            lblJogadorO.Size = new Size(48, 25);
+            lblJogadorO.Size = new Size(74, 38);
             lblJogadorO.TabIndex = 3;
             lblJogadorO.Text = ">>>";
             // 
             // lblJogadorX
             // 
             lblJogadorX.AutoSize = true;
+            lblJogadorX.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblJogadorX.Location = new Point(37, 167);
             lblJogadorX.Name = "lblJogadorX";
-            lblJogadorX.Size = new Size(48, 25);
+            lblJogadorX.Size = new Size(74, 38);
             lblJogadorX.TabIndex = 2;
             lblJogadorX.Text = "<<<";
             // 
@@ -144,6 +146,7 @@
             btn9.TabIndex = 8;
             btn9.Text = "X";
             btn9.UseVisualStyleBackColor = true;
+            btn9.Click += btn9_Click;
             // 
             // btn8
             // 
@@ -155,6 +158,7 @@
             btn8.TabIndex = 7;
             btn8.Text = "X";
             btn8.UseVisualStyleBackColor = true;
+            btn8.Click += btn8_Click;
             // 
             // btn7
             // 
@@ -166,6 +170,7 @@
             btn7.TabIndex = 6;
             btn7.Text = "X";
             btn7.UseVisualStyleBackColor = true;
+            btn7.Click += btn7_Click;
             // 
             // btn6
             // 
@@ -177,6 +182,7 @@
             btn6.TabIndex = 5;
             btn6.Text = "X";
             btn6.UseVisualStyleBackColor = true;
+            btn6.Click += btn6_Click;
             // 
             // btn5
             // 
@@ -188,6 +194,7 @@
             btn5.TabIndex = 4;
             btn5.Text = "X";
             btn5.UseVisualStyleBackColor = true;
+            btn5.Click += btn5_Click;
             // 
             // btn4
             // 
@@ -199,6 +206,7 @@
             btn4.TabIndex = 3;
             btn4.Text = "X";
             btn4.UseVisualStyleBackColor = true;
+            btn4.Click += btn4_Click;
             // 
             // btn3
             // 
@@ -210,6 +218,7 @@
             btn3.TabIndex = 2;
             btn3.Text = "X";
             btn3.UseVisualStyleBackColor = true;
+            btn3.Click += btn3_Click;
             // 
             // btn2
             // 
@@ -221,6 +230,7 @@
             btn2.TabIndex = 1;
             btn2.Text = "O";
             btn2.UseVisualStyleBackColor = true;
+            btn2.Click += btn2_Click;
             // 
             // btn1
             // 
