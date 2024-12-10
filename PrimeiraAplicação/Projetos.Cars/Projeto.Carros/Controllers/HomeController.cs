@@ -39,43 +39,43 @@ namespace Projeto.Carros.Controllers
 
         var DB = new DB();
 
-        var listaTO = DB.GetCarros();
+        var listaTO = DB.GetClientes();
 
-        var listaCarros = new List<Models.Carros>();
+        var listaCarros = new List<Models.Clientes>();
 
-          foreach (var carrosTO in listaTO) {
+          foreach (var clientesTO in listaTO) {
               listaCarros.Add(
-               new Models.Carros() { Id = carrosTO.Id, Nome = carrosTO.Nome,  Fabricante =carrosTO.Fabricante, Marca =carrosTO.Marca, Ano = carrosTO.Ano, Modelo= carrosTO.Modelo  }
+               new Models.Carros() { Id = clientesTO.Id, Nome = clientesTO.Nome,  Fabricante = clientesTO.Fabricante, Marca = clientesTO.Marca, Ano = clientesTO.Ano, Modelo = cliente  sTO.Modelo  }
                 );
             };
 
-    var ViewModel = new CarrosViewsModel() { ListCarros = listaCarros };
+    var ViewModel = new ClientesViewsModel() { ListCarros = listaClientess };
    
             return View(ViewModel);
 
 }
 
-public IActionResult NovoCarro(int? id)
+public IActionResult NovoClietnes(int? id)
         {
 
-            Models.Carros? Carro = null;
+            Models.Carros? Cliente = null;
 
             if (id != null)
             {
                 var db = new DB();
 
-                var carrosTO = db.GetCarrosById(id.GetValueOrDefault());
+                var clienteTO = db.GetClientesById(id.GetValueOrDefault());
 
-                Carro= new Models.Carros()
+                Cliente= new Models.Clientes()
                 {
-                    Id = carrosTO.Id,
-                    Nome = carrosTO.Nome,
-                    Marca = carrosTO.Marca,
-                    Fabricante = carrosTO.Fabricante,
-                    Modelo = carrosTO.Modelo,
+                    Id = ClientesTO.Id,
+                    Nome = CLientesTO.Nome,
+                    Marca = ClientesTO.Marca,
+                    Fabricante = ClientesTO.Fabricante,
+                    Modelo =ClientesTO.Modelo,
                 };
             }
-            return View(Carro);
+            return View(Cliente);
         }
 
 
@@ -85,7 +85,7 @@ public IActionResult NovoCarro(int? id)
 
             if (id == null)
             {
-                var novoCarro = new CarrosTO()
+                var novoCarro = new ClientesTO()
                 {
                     Nome = nome,
                     Ano = ano,
@@ -94,11 +94,11 @@ public IActionResult NovoCarro(int? id)
                     Modelo = modelo,
                     Id = _lastId,
                 };
-                DB.AddCarros(novoCarro);
+                DB.AddClientes(novoCarro);
             }
             else
             {
-                var  alterarCarro  = DB.GetCarrosById(id.GetValueOrDefault());
+                var  alterarCarro  = DB.GetClientesById(id.GetValueOrDefault());
 
                 alterarCarro.Nome = nome;
                 alterarCarro.Modelo= modelo;

@@ -12,22 +12,22 @@ namespace Servico
 
         public DB()
         {
-            _con = new MySqlConnection("Server=127.0.0.1;Database=carro;Uid=root;Pwd=;SslMode=none");
+            _con = new MySqlConnection("Server=localhost;Port=3306;Database=lojaCliente;Uid=root;Pwd=;SslMode=none");
         }
 
-        public List<CarrosTO> GetCarros()
+        public List<ClientesTO> GetClientes()
         {
             _con.Open();
             _cmd = new MySqlCommand();
             _cmd.Connection = _con;
-            _cmd.CommandText = "SELECT * FROM carro";
+            _cmd.CommandText = "SELECT * FROM clientes";
             _reader = _cmd.ExecuteReader();
 
-            var listaCarros = new List<CarrosTO>();
+            var listaCarros = new List<ClientesTO>();
 
             while (_reader.Read())
             {
-                var carros = new CarrosTO()
+                var carros = new clientesTO()
                 {
                     Id = int.Parse(_reader["id"].ToString()!),
                     Nome = _reader["nome"].ToString()!,
@@ -36,23 +36,23 @@ namespace Servico
                     Modelo = _reader["Modelo"].ToString()!,
                     Ano = int.Parse(_reader["Ano"].ToString()!),
                 };
-                listaCarros.Add(carros);
+                listaCarros.Add(clientes);
             }
             _con.Close();
             return listaCarros;
         }
-        public void AddCarros(CarrosTO carros)
+        public void AddCliente(ClientesTO clientes)
         {
             _con.Open();
             _cmd = new MySqlCommand();
             _cmd.Connection = _con;
             _cmd.CommandText = "INSERT INTO carro (nome, Modelo, Marca, Fabricante, Ano ) VALUE (?nome, ?Modelo, ?Marca, ?Fabricante, ?Ano) ";
-            _cmd.Parameters.Add("?nome", MySqlDbType.VarChar).Value = carros.Nome;
-            _cmd.Parameters.Add("?id", MySqlDbType.Int64).Value = carros.Id;
-            _cmd.Parameters.Add("?Modelo", MySqlDbType.VarChar).Value = carros.Modelo;
-            _cmd.Parameters.Add("?Marca", MySqlDbType.VarChar).Value = carros.Marca;
-            _cmd.Parameters.Add("?Fabricante", MySqlDbType.VarChar).Value = carros.Fabricante;
-            _cmd.Parameters.Add("?Ano", MySqlDbType.Int64).Value = carros.Ano;
+            _cmd.Parameters.Add("?nome", MySqlDbType.VarChar).Value = clientes.Nome;
+            _cmd.Parameters.Add("?id", MySqlDbType.Int64).Value = clientes.Id;
+            _cmd.Parameters.Add("?Modelo", MySqlDbType.VarChar).Value = clientes.Modelo;
+            _cmd.Parameters.Add("?Marca", MySqlDbType.VarChar).Value = clientes.Marca;
+            _cmd.Parameters.Add("?Fabricante", MySqlDbType.VarChar).Value = clientes.Fabricante;
+            _cmd.Parameters.Add("?Ano", MySqlDbType.Int64).Value = clientes.Ano;
 
             if (_cmd.ExecuteNonQuery() >= 1)
             {
@@ -65,18 +65,18 @@ namespace Servico
             _con.Close();
         }
 
-        public void UpdateAlterarCarros(CarrosTO carros)
+        public void UpdateAlterarClientes(clientesTO clientes)
         {
             _con.Open();
             _cmd = new MySqlCommand();
             _cmd.Connection = _con;
             _cmd.CommandText = "UPDATE carro SET nome = ?nome, Modelo  =?modelo, Marca = ?Marca, Ano = ?Ano WHERE id = (?id) ";
-            _cmd.Parameters.Add("?nome", MySqlDbType.VarChar).Value = carros.Nome;
-            _cmd.Parameters.Add("?id", MySqlDbType.Int64).Value = carros.Id;
-            _cmd.Parameters.Add("?Modelo", MySqlDbType.VarChar).Value = carros.Modelo;
-            _cmd.Parameters.Add("?Marca", MySqlDbType.VarChar).Value = carros.Marca;
-            _cmd.Parameters.Add("?Fabricante", MySqlDbType.VarChar).Value = carros.Fabricante;
-            _cmd.Parameters.Add("?Ano", MySqlDbType.Int64).Value = carros.Ano;
+            _cmd.Parameters.Add("?nome", MySqlDbType.VarChar).Value = clientes.Nome;
+            _cmd.Parameters.Add("?id", MySqlDbType.Int64).Value = clientes.Id;
+            _cmd.Parameters.Add("?Modelo", MySqlDbType.VarChar).Value = clientes.Modelo;
+            _cmd.Parameters.Add("?Marca", MySqlDbType.VarChar).Value = clientes.Marca;
+            _cmd.Parameters.Add("?Fabricante", MySqlDbType.VarChar).Value = clientes.Fabricante;
+            _cmd.Parameters.Add("?Ano", MySqlDbType.Int64).Value = clientes.Ano;
 
             if (_cmd.ExecuteNonQuery() >= 1)
             {
@@ -88,24 +88,24 @@ namespace Servico
             }
             _con.Close();
         }
-        public CarrosTO GetCarrosById(int id)
+        public clientesTO GetClientessById(int id)
         {
             _con.Open();
             _cmd = new MySqlCommand();
             _cmd.Connection = _con;
-            _cmd.CommandText = "SELECT * FROM carro WHERE id = ?id";
+            _cmd.CommandText = "SELECT * FROM clientes WHERE id = ?id";
             _cmd.Parameters.Add("?id", MySqlDbType.Int64).Value = id;
             _reader = _cmd.ExecuteReader();
 
-            var carros = new CarrosTO();
+            var clientess = new clientesTO();
 
             _reader.Read();
-            carros.Id = int.Parse(_reader["id"].ToString()!);
-            carros.Nome = _reader["nome"].ToString()!;
-            carros.Marca = _reader["Marca"].ToString()!;
-            carros.Modelo= _reader["Modelo"].ToString()!;
-            carros.Fabricante = _reader["fabricante"].ToString()!;
-            carros.Ano = int.Parse(_reader["ano"].ToString()!);
+            clientes.Id = int.Parse(_reader["id"].ToString()!);
+            clientes.Nome = _reader["nome"].ToString()!;
+            clientes.Marca = _reader["Marca"].ToString()!;
+            clientes.Modelo= _reader["Modelo"].ToString()!;
+            clientes.Fabricante = _reader["fabricante"].ToString()!;
+            c.Ano = int.Parse(_reader["ano"].ToString()!);
 
             _con.Close();
 
@@ -113,25 +113,7 @@ namespace Servico
         }
 
        
-        public void DeletarCarros(int id)
-        {
-            _con.Open();
-            _cmd = new MySqlCommand();
-            _cmd.Connection = _con;
-            _cmd.CommandText = "DELETE FROM carro WHERE id = (?id)";
-            _cmd.Parameters.Add("?id", MySqlDbType.Int64).Value = id;
-
-
-            if (_cmd.ExecuteNonQuery() >= 1)
-            {
-                //true
-            }
-            else
-            {
-                //false
-            }
-            _con.Close();
-        }
+       
 
     }
 }
