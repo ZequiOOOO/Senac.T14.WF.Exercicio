@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lojinha_CSHARP", "lojinha_CSHARP\lojinha_CSHARP.csproj", "{7832F73D-0BF7-4124-9E45-EC8C60A11357}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0483DD23-3D5C-4567-855A-38CFC3A3E4B5} = {0483DD23-3D5C-4567-855A-38CFC3A3E4B5}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "servico", "servico\servico.csproj", "{0483DD23-3D5C-4567-855A-38CFC3A3E4B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7832F73D-0BF7-4124-9E45-EC8C60A11357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7832F73D-0BF7-4124-9E45-EC8C60A11357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7832F73D-0BF7-4124-9E45-EC8C60A11357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7832F73D-0BF7-4124-9E45-EC8C60A11357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0483DD23-3D5C-4567-855A-38CFC3A3E4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0483DD23-3D5C-4567-855A-38CFC3A3E4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0483DD23-3D5C-4567-855A-38CFC3A3E4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0483DD23-3D5C-4567-855A-38CFC3A3E4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A50CDBAB-E476-4816-976F-8F2CA8284435}
+	EndGlobalSection
+EndGlobal
